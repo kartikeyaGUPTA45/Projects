@@ -3,9 +3,6 @@ import game.Game;
 import player.Player;
 
 public class App {
-   public App() {
-   }
-
    public static void main(String[] args) throws Exception {
       System.out.println("First Project -> Tic Tac Toe");
 
