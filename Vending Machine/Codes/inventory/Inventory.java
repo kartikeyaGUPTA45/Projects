@@ -1,7 +1,7 @@
 package inventory;
 
-import item.ItemShelf;
 import item.Item;
+import item.ItemShelf;
 
 public class Inventory {
     private ItemShelf[] inventory;
@@ -56,6 +56,14 @@ public class Inventory {
 
         System.out.println("Invalid item Code");
         return new Item();
+    }
+
+    public void updateSoldOutItem(int itemCodeNumber) {
+        for(ItemShelf shelf: inventory) {
+            if (shelf.getItemCode() == itemCodeNumber) {
+                shelf.setSoldOut(true);
+            }
+        }
     }
 
 }
