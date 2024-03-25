@@ -29,6 +29,4 @@ public class ItemShelf {
     public void setSoldOut(boolean soldOut) {
         this.soldOut = soldOut;
     }
-
-
 }
