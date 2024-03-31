@@ -67,7 +67,5 @@ public class App {
             System.out.println("Item Code: " + shelf.getItemCode() + " Item: " + shelf.getItem().getType() +" Price: " + shelf.getItem().getPrice() + 
             " isAvailable:" + !shelf.isSoldOut());
         }
-    }
-
-        
+    }        
 }
