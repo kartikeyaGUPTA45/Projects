@@ -57,9 +57,11 @@ public class VendingMachineState {
             dispenseProduct(vendingMachine, itemCodeNumber);
             return;
         }
+
     }
 
     public void getChange(int itemPrice, int paidByUser) {
         System.out.println("Returned the change in the Coin Dispense Tray: " + (paidByUser- itemPrice));
-    }   
+
+    }    
 }
