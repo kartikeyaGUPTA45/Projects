@@ -1,15 +1,15 @@
 package item;
 
 public class Item {
-    private String  itemType;
+    private ItemType  itemType;
     private int price;
 
 
-    public String getType() {
+    public ItemType getType() {
         return this.itemType;
     }
 
-    public void setItemType(String itemType) {
+    public void setItemType(ItemType itemType) {
         this.itemType = itemType;
     }
 
