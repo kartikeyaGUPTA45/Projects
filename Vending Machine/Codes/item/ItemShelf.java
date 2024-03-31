@@ -5,6 +5,7 @@ public class ItemShelf {
     private int itemCode;
     private Item item;
     private boolean soldOut;
+    private int quantity;
 
     public Item getItem() {
         return this.item;
