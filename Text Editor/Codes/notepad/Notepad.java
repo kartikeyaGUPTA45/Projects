@@ -1,9 +1,9 @@
 package notepad;
 
 import action.Action;
-
 import java.time.LocalDateTime;
 import java.util.*;
+
 
 public class Notepad {
     private int id = 1;
@@ -52,6 +52,7 @@ public class Notepad {
 
         notepad[lineNumber - 1] = text;
         undoAction.push(new Action(id++, LocalDateTime.now(), true, lineNumber, text));
+        display();
     }
 
     public void delete(int lineNumber) {
@@ -67,6 +68,7 @@ public class Notepad {
 
         redoAction.push(new Action(id++, LocalDateTime.now(), false, lineNumber, notepad[lineNumber-1]));
         notepad[lineNumber-1] = "";
+        display();
     }
 
     public void delete(int startingLine, int endingLine) {
@@ -78,6 +80,54 @@ public class Notepad {
         for(int i=startingLine; i<=endingLine;i++) {
             delete(i);
         }
+    }
+
+    public void copy(int startingLine, int endingLine) {
+        if (startingLine > endingLine  || endingLine > this.capacity) {
+            System.out.println("Unable to copy");
+            return;
+        }
+
+        String copyText = "";
+        for(int i=startingLine-1; i< endingLine; i++) {
+            copyText += notepad[i];
+        }
+
+        if (!copyText.isEmpty()) clipBoard.add(copyText);
+    }
+
+    public void paste(int lineNumber) {
+        if (this.clipBoard.isEmpty()) {
+            System.out.println("Nothing to paste");
+            return;
+        }
+
+        String text = clipBoard.peek();
+        insertLine(lineNumber, text);
+    }
+
+    public void undo() {
+        if (this.undoAction.isEmpty()) {
+            System.out.println("Nothing to undo");
+            return;
+        }
+
+        Action action = this.undoAction.peek();
+        this.undoAction.pop();
+
+        delete(action.getLineNumber());
+    }
+
+    public void redo() {
+        if (this.redoAction.isEmpty()) {
+            System.out.println("Nothing to redo");
+            return;
+        }
+
+        Action action = redoAction.peek();
+        redoAction.pop();
+
+        insertLine(action.getLineNumber(), action.getText());
     }
 
 }
